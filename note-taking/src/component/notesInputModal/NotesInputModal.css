@@ -3,8 +3,14 @@
   backdrop-filter: blur(10px);
 }
 
+.notes-modal {
+  margin-top: 2rem;
+  min-width: 20rem;
+  max-width: 53vw;
+  /* max-height: 5vh; */
+}
+
 .modal-form {
-  /* background-color: white; */
   width: 95%;
   padding: 1rem;
   border-radius: 0.5rem;
@@ -19,20 +25,31 @@
 .modal-input-textarea {
   width: 95%;
   min-width: fit-content;
-  margin: 0.5rem 0;
+  margin: 0 0 0 0.5rem;
 }
 
 .modal-input-textarea {
   height: 20rem;
+  /* height: 50%; */
   max-width: 95%;
+}
+
+.checkbox-container,
+.checkbox-container label {
+  display: flex;
 }
 
 .form-content {
   margin: 0.8rem;
   width: 85%;
 }
+.tags,
+.tags .modal-input-title {
+  margin: 0;
+}
 
 .modal-title,
 .modal-description {
-  padding-left: 10px;
+  padding-left: 1rem;
+  margin-bottom: 2px;
 }

@@ -10,37 +10,61 @@ const reducerFunc = (state, action) => {
       return { ...state, note: { ...state.note, description: action.payload } };
     case 'COLOR':
       return { ...state, note: { ...state.note, color: action.payload } };
-    case 'TAGS':
-      return {
-        ...state,
-        note: { ...state.note, tags: [...state.note.tags, ...action.payload] },
-      };
-    case 'DISPLAY':
-      return { ...state, display: action.payload };
-    case 'ADD':
+    case 'WORK':
       return {
         ...state,
         note: {
           ...state.note,
-          title: '',
-          description: '',
-          color: 'white',
-          tags: [],
+          tags: { ...state.note.tags, work: !state.note.tags.work },
         },
-        display: false,
       };
+    case 'HOMEWORK':
+      return {
+        ...state,
+        note: {
+          ...state.note,
+          tags: { ...state.note.tags, homework: !state.note.tags.homework },
+        },
+      };
+    case 'CREATIVE':
+      return {
+        ...state,
+        note: {
+          ...state.note,
+          tags: { ...state.note.tags, creative: !state.note.tags.creative },
+        },
+      };
+    case 'EXERCISE':
+      return {
+        ...state,
+        note: {
+          ...state.note,
+          tags: { ...state.note.tags, exercise: !state.note.tags.exercise },
+        },
+      };
+    case 'DISPLAY':
+      return { ...state, display: action.payload };
+    case 'CLEAR_AFTER_ADD':
+      return action.payload;
+
     default:
       return state;
   }
 };
 
 export const NoteInputProvider = ({ children }) => {
-  const [{ note, display }, noteDispatch] = useReducer(reducerFunc, {
-    note: { title: '', description: '', color: 'white', tags: [] },
+  const [{ note, display, editId }, noteDispatch] = useReducer(reducerFunc, {
+    note: {
+      title: '',
+      description: '',
+      color: 'white',
+      tags: { work: false, homework: false, creative: false, exercise: false },
+    },
     display: false,
+    editId: '',
   });
   return (
-    <NoteInputContext.Provider value={{ note, display, noteDispatch }}>
+    <NoteInputContext.Provider value={{ note, display, noteDispatch, editId }}>
       {children}
     </NoteInputContext.Provider>
   );

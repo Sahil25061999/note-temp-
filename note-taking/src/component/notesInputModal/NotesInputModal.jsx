@@ -6,26 +6,43 @@ import './NotesInputModal.css';
 import { useToken } from '../../context/token-context';
 
 export const NotesInputModal = () => {
-  const { note, display, noteDispatch } = useNoteInputContext();
-  const { title, description } = note;
+  const { note, display, noteDispatch, editId } = useNoteInputContext();
+  const { title, description, color } = note;
   const { token } = useToken();
   const { noteList, setNotesList } = useNotesList();
+  const { work, exercise, homework, creative } = note.tags;
 
   const handleAddNote = async (e) => {
     e.preventDefault();
-    console.log(title.length, description.length);
     if (title.length === 0 || description.length === 0) {
       return;
     }
     try {
       const response = await axios.post(
-        '/api/notes',
+        `/api/notes${editId ? `/${editId}` : ''}`,
         { note },
         { headers: { authorization: token } }
       );
       if (response.status === 200 || response.status === 201) {
         setNotesList([...response.data.notes]);
-        noteDispatch({ type: 'ADD' });
+        noteDispatch({
+          type: 'CLEAR_AFTER_ADD',
+          payload: {
+            note: {
+              title: '',
+              description: '',
+              color: 'white',
+              tags: {
+                work: false,
+                homework: false,
+                creative: false,
+                exercise: false,
+              },
+            },
+            display: false,
+            editId: '',
+          },
+        });
       }
       console.log(response.data.notes);
     } catch (e) {
@@ -33,9 +50,11 @@ export const NotesInputModal = () => {
     }
   };
 
+  console.log(note.tags);
+
   return display ? (
     <div className="modal-container notes-modal-container">
-      <div className="modal shadow ">
+      <div className="modal shadow notes-modal ">
         <button
           onClick={() => {
             noteDispatch({ type: 'DISPLAY', payload: !display });
@@ -44,22 +63,15 @@ export const NotesInputModal = () => {
         >
           <span className="fa-solid fa-xmark"></span>
         </button>
-        {/* <div class="modal-head margin-t-b-5">
-        <h1 class="modal-heading">Diwali Sale</h1>
-      </div>
-      <div class="modal-content margin-b-10 padding-1r">
-        <p class="medium-text muted-text-color">
-          Hurry!!! limited time deal on all products.
-        </p>
-      </div>
-      <div class="modal-foot margin-t-5">
-        <button class="btn btn-accented">Shop</button>
-      </div> */}
+
         <form className="modal-form" onClick={(e) => e.stopPropagation()}>
+          {/*                   TITLE BOX                           */}
           <div className="form-content">
-            <h2 className="text-left modal-title">
-              <label htmlFor="title">Title</label>
-            </h2>
+            <h3 className="text-left modal-title">
+              <label htmlFor="title">
+                <strong>Title</strong>
+              </label>
+            </h3>
             <input
               onChange={(e) =>
                 noteDispatch({ type: 'TITLE', payload: e.target.value })
@@ -70,10 +82,80 @@ export const NotesInputModal = () => {
               value={title}
             />
           </div>
+
+          {/*                   Tags                           */}
+          <div className="form-content tags">
+            <h4 className="text-left modal-title">
+              <label htmlFor="title">
+                <strong>Tags</strong>
+              </label>
+            </h4>
+            <div className="checkbox-container">
+              <label className="margin-r-10">
+                <input
+                  name="work"
+                  className="checkbox "
+                  id="work"
+                  type="checkbox"
+                  checked={work}
+                  onChange={() => {
+                    noteDispatch({ type: 'WORK' });
+                  }}
+                  value="work"
+                />
+                Work
+              </label>
+              <label className="margin-r-10">
+                <input
+                  className="checkbox "
+                  id="homework"
+                  name="homework"
+                  type="checkbox"
+                  checked={homework}
+                  onChange={() => {
+                    noteDispatch({ type: 'HOMEWORK' });
+                  }}
+                  value="homework"
+                />
+                Homework
+              </label>
+              <label className="margin-r-10">
+                <input
+                  className="checkbox "
+                  id="exercise"
+                  name="exercise"
+                  type="checkbox"
+                  checked={exercise}
+                  onChange={() => {
+                    noteDispatch({ type: 'EXERCISE' });
+                  }}
+                  value="exercise"
+                />
+                Exercise
+              </label>
+              <label className="margin-r-10">
+                <input
+                  className="checkbox"
+                  id="creative"
+                  name="creative"
+                  type="checkbox"
+                  checked={creative}
+                  onChange={() => {
+                    noteDispatch({ type: 'CREATIVE' });
+                  }}
+                  value="creative"
+                />
+                Creative
+              </label>
+            </div>
+          </div>
+          {/*                   Description BOX                           */}
           <div className="form-content">
-            <h2 className="text-left modal-description">
-              <label htmlFor="description">Description</label>
-            </h2>
+            <h3 className="text-left modal-description">
+              <label htmlFor="description">
+                <strong>Description</strong>
+              </label>
+            </h3>
             <textarea
               onChange={(e) =>
                 noteDispatch({ type: 'DESCRIPTION', payload: e.target.value })
@@ -83,6 +165,7 @@ export const NotesInputModal = () => {
               value={description}
             ></textarea>
           </div>
+          {/*                   Button BOX                           */}
           <div className="form-bottom">
             <button className="btn btn-primary" onClick={handleAddNote}>
               Add
@@ -92,6 +175,7 @@ export const NotesInputModal = () => {
                 noteDispatch({ type: 'COLOR', payload: e.target.value })
               }
               type="color"
+              value={color}
             />
           </div>
         </form>
