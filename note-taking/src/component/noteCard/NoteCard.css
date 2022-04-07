@@ -1,0 +1,21 @@
+.card-description-section p {
+  -webkit-line-clamp: 5;
+  line-height: 1.5rem;
+}
+
+.card-description-section {
+  padding: 0 1rem 0 0;
+  height: max-content;
+}
+.note-card {
+  height: 12rem;
+  max-width: 50rem;
+  width: 50vw;
+  box-shadow: 4px 8px 16px rgba(0, 0, 0, 0.08);
+  display: flex;
+  justify-content: space-between;
+}
+
+.note-card .note-editing-option {
+  align-self: flex-end;
+}

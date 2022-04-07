@@ -1,0 +1,149 @@
+.navbar {
+  position: relative;
+}
+
+.authentication-body {
+  width: 100vw;
+  min-height: 90vh;
+  height: 100%;
+  margin-top: auto;
+  padding: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.form-container {
+  min-width: 22rem;
+  backdrop-filter: blur(10px);
+  padding: 1.2rem;
+  border-radius: 8px;
+  max-height: fit-content;
+  box-shadow: 4px 4px 32px rgba(136, 136, 136, 0.205);
+}
+
+.form-container,
+.input-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-inputs {
+  margin-top: 2rem;
+}
+
+.signup-container .form-inputs {
+  margin-top: 12px;
+}
+
+.input-container {
+  position: relative;
+  margin-bottom: 1rem;
+}
+
+.input-container label {
+  font-size: 0.87rem;
+  margin-bottom: 5px;
+}
+
+.input-container .textbox {
+  width: 100%;
+  min-width: min-content;
+}
+.textbox:hover,
+.textbox:focus {
+  border-color: var(--secondary-text-color);
+}
+.password-eye-icon {
+  position: absolute;
+  right: 4%;
+  top: 55%;
+  cursor: pointer;
+  color: var(--muted-text-color);
+  z-index: 90;
+}
+
+.remember-me-container {
+  display: flex;
+  flex-direction: row;
+  align-items: baseline;
+  justify-content: space-between;
+}
+
+.remember-me-container label {
+  font-weight: 400;
+}
+
+.form-sign-up-btn,
+.form-log-in-btn,
+.form-default-mail-container .google-btn {
+  width: 100%;
+}
+
+.form-log-in-btn {
+  margin: 8px 0;
+}
+
+.form-or-text {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  font-weight: 600;
+  margin: 14px 0;
+}
+
+.line {
+  display: inline-block;
+  width: 45%;
+  height: 1.5px;
+  margin: 3px;
+  background-color: rgb(136, 136, 136);
+}
+
+.terms-condition,
+.have-account-condition,
+.no-account-condition {
+  margin: 1rem 0;
+}
+
+.have-account-condition,
+.no-account-condition {
+  margin-bottom: 0;
+}
+
+input[type='checkbox'] {
+  margin-right: 4px;
+}
+
+input[type='checkbox']:hover {
+  cursor: pointer;
+}
+
+.term-condtn-link:hover,
+.form-login-link:hover,
+.form-signup-link:hover,
+.forgot-pwd-link:hover {
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.terms-condition,
+label {
+  font-weight: 400;
+}
+
+.form-default-mail-container {
+  margin-top: 8px;
+}
+
+.error-msg {
+  margin-top: 5px;
+  color: red;
+}
+
+@media only screen and (max-width: 22.5em) {
+  .form-container {
+    min-width: 18rem;
+  }
+}

@@ -1,0 +1,48 @@
+.sidebar {
+  grid-column: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 1rem 1rem 0.5rem 4rem;
+  border-right: 2px solid black;
+  height: 100vh;
+}
+
+.btn-link:hover {
+  text-decoration: none;
+}
+
+.sidebar-items {
+  margin: 8px 0;
+}
+
+.sidebar-items.active {
+  background-color: var(--primary-color);
+  color: white;
+  border-color: var(--primary-color);
+}
+
+.sidebar-items .sidebar-link-text {
+  margin-left: 8px;
+}
+
+@media only screen and (max-width: 64em) {
+  .sidebar {
+    grid-row: 1;
+    display: flex;
+    flex-direction: row;
+    overflow-x: hidden;
+    overflow-y: hidden;
+    height: min-content;
+    padding: 0.8rem;
+    width: 100vw;
+  }
+
+  .sidebar:hover::-webkit-scrollbar {
+    display: none;
+    /* height: 10px; */
+  }
+
+  .sidebar:hover::-webkit-scrollbar-button {
+    width: 2px;
+  }
+}

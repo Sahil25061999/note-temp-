@@ -1,0 +1,14 @@
+.add-button {
+  height: 12rem;
+  width: 15rem;
+  border-radius: 0.5rem;
+  border: none;
+
+  cursor: pointer;
+  background-color: var(--primary-text-color);
+}
+
+.add-button-icon {
+  font-size: 4rem;
+  color: rgb(0, 0, 0);
+}

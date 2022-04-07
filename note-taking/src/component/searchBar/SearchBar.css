@@ -1,0 +1,4 @@
+.textbox:hover,
+.textbox:focus {
+  border-color: var(--secondary-text-color);
+}

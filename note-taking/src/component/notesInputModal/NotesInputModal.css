@@ -1,0 +1,38 @@
+.notes-modal-container {
+  display: block;
+  backdrop-filter: blur(10px);
+}
+
+.modal-form {
+  /* background-color: white; */
+  width: 95%;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.modal-input-title,
+.modal-input-textarea {
+  width: 95%;
+  min-width: fit-content;
+  margin: 0.5rem 0;
+}
+
+.modal-input-textarea {
+  height: 20rem;
+  max-width: 95%;
+}
+
+.form-content {
+  margin: 0.8rem;
+  width: 85%;
+}
+
+.modal-title,
+.modal-description {
+  padding-left: 10px;
+}

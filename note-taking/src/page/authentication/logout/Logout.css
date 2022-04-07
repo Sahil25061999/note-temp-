@@ -1,0 +1,29 @@
+.logout-body {
+  width: 100vw;
+  min-height: 90vh;
+  height: 100%;
+  background: url('../../../assets/image/hero-image/logout3.jpg') center
+    no-repeat;
+
+  background-size: contain;
+
+  margin-top: auto;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: var(--hover-color);
+}
+
+.logout-body h1 {
+  width: fit-content;
+  background-color: rgba(255, 255, 255, 0.815);
+  mix-blend-mode: luminosity;
+  font-size: 3rem;
+}
+
+.login-btn {
+  font-size: 1.2rem;
+  margin-top: 1.5rem;
+}
